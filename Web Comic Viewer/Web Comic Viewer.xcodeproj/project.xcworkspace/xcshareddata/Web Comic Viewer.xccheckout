@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B0085E82-F097-496C-86EE-42FC9597CB6E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Web Comic Viewer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D881F5EA-81B1-42AC-B77E-5C69692BDA30</key>
+		<string>ssh://github.com/sidraheja/webcomic-viewer.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Web Comic Viewer/Web Comic Viewer.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D881F5EA-81B1-42AC-B77E-5C69692BDA30</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/sidraheja/webcomic-viewer.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D881F5EA-81B1-42AC-B77E-5C69692BDA30</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D881F5EA-81B1-42AC-B77E-5C69692BDA30</string>
+			<key>IDESourceControlWCCName</key>
+			<string>webcomic-viewer</string>
+		</dict>
+	</array>
+</dict>
+</plist>
