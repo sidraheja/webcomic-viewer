@@ -17,12 +17,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _comicNumber = arc4random() % 1300;
-    if(_comicNumber == 0)
+    _notOptimize = true;
+    if(_allComics == true)
     {
-        _comicNumber = 1;
+        _comicNumber = arc4random() % 1300;
+        if(_comicNumber == 0)
+        {
+            _comicNumber = 1;
+        }
+        [self LoadComicView:_comicNumber];
     }
-    [self LoadComicView:_comicNumber];
+    else
+    {
+        _comicNumber = [self findComicId];
+        _allComics = true;
+        [self LoadComicView:_comicNumber];
+        _allComics = false;
+    }
 
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -35,22 +46,43 @@
 
 - (IBAction)prevComic:(id)sender
 {
-    _comicNumber = _comicNumber - 1;
-    if(_comicNumber == 1)
+    if(_allComics)
     {
-        _comicNumber = 1300;
+        _comicNumber = _comicNumber - 1;
+        if(_comicNumber == 1)
+        {
+            _comicNumber = 1300;
+        }
+        [self LoadComicView:_comicNumber];
     }
-    [self LoadComicView:_comicNumber];
+    else
+    {
+        _comicNumber = [self findComicId];
+        _allComics = true;
+        [self LoadComicView:_comicNumber];
+        _allComics = false;
+    }
 }
 
 - (IBAction)nextComic:(id)sender
 {
-    _comicNumber = _comicNumber + 1;
-    if(_comicNumber == 1300)
+    if(_allComics)
     {
-        _comicNumber = 1;
+        _comicNumber = _comicNumber + 1;
+        if(_comicNumber == 1300)
+        {
+            _comicNumber = 1;
+        }
+        [self LoadComicView:_comicNumber];
     }
-    [self LoadComicView:_comicNumber];
+    else
+    {
+        NSLog(@"HERE!");
+        _comicNumber = [self findComicId];
+        _allComics = true;
+        [self LoadComicView:_comicNumber];
+        _allComics = false;
+    }
 }
 
 -(void)LoadComicView:(int)comicNumber
@@ -80,9 +112,22 @@
     NSURL *comicImageURL = [NSURL URLWithString:[jsonObj objectForKey:@"img"]];
     NSData *comicImageData = [NSData dataWithContentsOfURL:comicImageURL];   //Get the image from a url in a data object
     UIImage *comicImage = [[UIImage alloc] initWithData:comicImageData];
-    CGSize iSize = CGSizeMake(_comicView.frame.size.width, _comicView.frame.size.height);
-    comicImage = [self resizeImage:comicImage imageSize:iSize];
-    [_comicView initWithImage:comicImage];
+    if(_allComics)
+    {
+        CGSize iSize = CGSizeMake(_comicView.frame.size.width, _comicView.frame.size.height);
+        comicImage = [self resizeImage:comicImage imageSize:iSize];
+        _comicView = [_comicView initWithImage:comicImage];
+    }
+    else
+    {
+        if(fabsf((comicImage.size.height - comicImage.size.width)) <= 200 || fabsf((comicImage.size.width - comicImage.size.height)) <= 100)
+        {
+            NSLog(@"Image height is: %f", comicImage.size.height);
+            NSLog(@"Image width is: %f", comicImage.size.width);
+
+            _notOptimize = false;
+        }
+    }
 
 }
 
@@ -103,7 +148,7 @@
     }
     else
     {
-        [image drawInRect:CGRectMake(0,0,size.width * .99,size.height * .9)];
+        [image drawInRect:CGRectMake(0,0,size.width * .99,size.height * .99)];
     }
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     //here is the scaled image which has been changed to the size specified
@@ -111,6 +156,26 @@
     return newImage;
 }
 
+-(int)findComicId
+{
+    _notOptimize = TRUE;
+    while(_notOptimize)
+    {
+        NSLog(@"Optimized: %d", _notOptimize);
+        NSLog(@"HELLO");
+        _comicNumber = arc4random() % 1300;
+        [self LoadComicView:_comicNumber];
+    }
+    return _comicNumber;
+}
+
+
+- (IBAction)home:(id)sender
+{
+    homeViewController *home = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"home"];
+    [self presentViewController:home animated:NO completion:nil];
+
+}
 
 
 

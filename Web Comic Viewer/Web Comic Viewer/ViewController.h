@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "homeViewController.h"
 
 @interface ViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *comicView;
 @property int comicNumber;
+@property BOOL allComics;
+@property BOOL notOptimize; 
 
 @end
