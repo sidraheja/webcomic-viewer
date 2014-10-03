@@ -18,3 +18,4 @@ Note: The loading time for next and previous comics might be a little longer as 
 
 I have added NSLOG statements for debugging.
 
+If there is an error in getting the data, such as no internet connectivity, right now I have nslogged an error message. This can be easily changed to a pop up alert or some kind of notification or alert with a message.
